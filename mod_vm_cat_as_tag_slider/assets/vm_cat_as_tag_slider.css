@@ -1,0 +1,28 @@
+ .vmcat_tag-block {
+    border: 1px solid #0fbeff;
+    display: inline-block;
+    text-transform: uppercase;
+    padding: 5px 5px;
+    margin: 5px 5px; 
+
+} 
+
+.vmcat_tag-block a {
+    padding: 10px 10px;
+    color: black;
+    font-weight: bold;
+}
+
+.tag_button {
+    float:right;
+}
+
+.tag_container {
+    height: 38px;
+    overflow: hidden;
+}
+
+#tag_container_link {    
+    border-bottom: 1px dotted;
+    color: #0094d9;
+}
