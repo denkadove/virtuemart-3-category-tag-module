@@ -1,5 +1,5 @@
  .vmcat_tag-block {
-    border: 1px solid #0fbeff;
+    border: 1px solid #ffd800;
     display: inline-block;
     text-transform: uppercase;
     padding: 5px 5px;
@@ -8,21 +8,51 @@
 } 
 
 .vmcat_tag-block a {
-    padding: 10px 10px;
-    color: black;
-    font-weight: bold;
+    padding: 10px 10px; 
 }
 
-.tag_button {
-    float:right;
+.caterory_tag_limiter {
+  max-height: 40px;
+  overflow: hidden;
+  position: relative;
 }
 
-.tag_container {
-    height: 38px;
-    overflow: hidden;
+.caterory_tag_limiter .caterory_tag_bottom {
+  position: absolute;
+  bottom: 0;  
+  width: 100%;
+  height: 60px;
+  opacity: 1;
+  transition: 0.3s;
 }
 
-#tag_container_link {    
-    border-bottom: 1px dotted;
-    color: #0094d9;
+.caterory_tag_read_more_checker {
+  opacity: 0;
+  position: absolute;
+}
+
+.caterory_tag_read_more_checker:checked ~ .caterory_tag_limiter {
+  max-height: none;
+}
+
+.caterory_tag_read_more_checker:checked ~ .caterory_tag_limiter .bottom {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.caterory_tag_read_more_checker ~ .caterory_tag_read_more_button:before {
+  content: "« Больше ";
+}
+
+.caterory_tag_read_more_checker:checked ~ .caterory_tag_read_more_button:before {
+  content: "» Меньше ";
+}
+
+.caterory_tag_read_more_button {
+  cursor: pointer;
+  display: inline-block;
+  color: #777;
+  text-decoration: underline dotted;
+  width: 100%;
+  direction: rtl;
 }

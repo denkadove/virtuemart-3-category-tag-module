@@ -8,6 +8,12 @@ if (!class_exists( 'VmConfig' )) require(JPATH_ROOT.DS.'administrator'.DS.'compo
 VmConfig::loadConfig();
 VmConfig::loadJLang('mod_vm_cat_as_tag_slider', true);
 
+function vardump($var) {
+    echo '<pre>';
+    var_dump($var);
+    echo '</pre>';
+}
+
 function unique_multidim_array($array, $key) { 
     $temp_array = array(); 
     $i = 0; 
@@ -39,32 +45,37 @@ function get_icon_list($actual_category_number){
                                                 $manufacturer_id = 0, $omit = 0);
     $category_list = array();
 
-        //get product id`s list from page
+        //получаем список id продуктов на странице
         foreach ($prod_list as $i => $value) {
             $product_id_list[$i] = $value->virtuemart_product_id;            
         }
 
-        //get category list for each product
+        //для каждого продукта получаем список категорий
         foreach ($product_id_list as $i => $value) {
             $cat_list[$i] = $productModel->getProductCategories($product_id_list[$i]);
 
-        //get id, name and metakey for each category (use as badge name)
+       //для каждой категории получаем id, имя и metakey (используется в качестве названия бейджа)
             foreach ($cat_list[$i] as $j => $value) {
-                $id = $cat_list[$i][$j][virtuemart_category_id];
+                $id = $cat_list[$i][$j][virtuemart_category_id];                
+                $name = $cat_list[$i][$j][category_name];
+                $alt = $cat_list[$i][$j][metakey];
+                $published = $cat_list[$i][$j][published];
 
-                
-                    $name = $cat_list[$i][$j][category_name];
-                    $alt = $cat_list[$i][$j][metakey];
+                //vardump($published);
 
-                    if (!$alt){
-                        $array = array('id' => $id, 'name' => $name, 'alt'=> $name);
-                    } else {
-                        $array = array('id' => $id, 'name' => $alt, 'alt'=> $name);
-                    } 
-                
-                    array_push($category_list,$array);        
+                if (!$alt){
+                    $array = array('id' => $id, 'name' => $name, 'alt'=> $name);
+                } else {
+                    $array = array('id' => $id, 'name' => $alt, 'alt'=> $name);
+                } 
+
+                if ($published){
+                    array_push($category_list,$array);
+                }                
+                        
             }
         }
+        
         $unique_category_list = unique_multidim_array($category_list,'id');
         //$unique_category_list = shuffle($category_list);
         return $unique_category_list;
@@ -85,7 +96,6 @@ if (!($unique_category_list = $cache->get($cacheKey, '')))
 
 $doc = JFactory::getDocument();
 $doc->addStyleSheet(JURI::base().'modules/mod_vm_cat_as_tag_slider/assets/vm_cat_as_tag_slider.css');
-//$doc->addScript(JURI::base().'modules/mod_vm_cat_as_tag_slider/assets/vm_cat_as_tag_slider.js');
 $doc->addStyleDeclaration($style);
 require(JModuleHelper::getLayoutPath('mod_vm_cat_as_tag_slider',$layout));
 ?>
