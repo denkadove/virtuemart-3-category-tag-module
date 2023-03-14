@@ -1,5 +1,5 @@
- .vmcat_tag-block {
-    border: 1px solid #ffd800;
+.vmcat_tag-block {
+    border: 1px solid #00aeef;
     display: inline-block;
     text-transform: uppercase;
     padding: 5px 5px;
@@ -13,8 +13,7 @@
 
 .caterory_tag_limiter {
   max-height: 40px;
-  overflow: hidden;
-  /*position: relative;*/
+  overflow: hidden;  
 }
 
 .caterory_tag_limiter .caterory_tag_bottom {

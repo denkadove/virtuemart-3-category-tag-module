@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="module" version="2.5.0" method="upgrade">
-  <name>mod_vm_category_tag_slider</name>
+  <name>mod_vm_category_slider</name>
   <creationDate>22.02.220</creationDate>
   <author>denkadove</author>
   <authorUrl>https://vk.com/gargylia</authorUrl>
